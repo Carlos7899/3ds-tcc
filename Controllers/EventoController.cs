@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace BairroConnectAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class EventoController : ControllerBase
     {
         private readonly DataContext _context;
@@ -21,13 +21,13 @@ namespace BairroConnectAPI.Controllers
 
         #region GET 
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<ActionResult<List<Evento>>> GetEventos()
         {
             return await _context.TB_EVENTO.ToListAsync();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetById")]
         public async Task<ActionResult<Evento>> GetEvento(int id)
         {
             var evento = await _context.TB_EVENTO.FindAsync(id);
@@ -44,7 +44,7 @@ namespace BairroConnectAPI.Controllers
 
         #region POST 
 
-        [HttpPost]
+        [HttpPost("Add")]
         public async Task<ActionResult<Evento>> PostEvento(Evento evento)
         {
             _context.TB_EVENTO.Add(evento);
@@ -57,7 +57,7 @@ namespace BairroConnectAPI.Controllers
 
         #region PUT 
 
-        [HttpPut("{id}")]
+        [HttpPut("Update")]
         public async Task<IActionResult> PutEvento(int id, Evento evento)
         {
             if (id != evento.idEvento)
@@ -90,7 +90,7 @@ namespace BairroConnectAPI.Controllers
 
         #region DELETE 
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete")]
         public async Task<IActionResult> DeleteEvento(int id)
         {
             var evento = await _context.TB_EVENTO.FindAsync(id);

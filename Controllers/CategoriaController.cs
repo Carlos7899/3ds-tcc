@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using BairroConnectAPI.Data;
 using BairroConnectAPI.Models;
 
@@ -14,14 +10,12 @@ namespace BairroConnectAPI.Controllers
     public class CategoriaController : ControllerBase
     {
         private readonly DataContext _context;
-
         public CategoriaController(DataContext context)
         {
             _context = context;
         }
 
-        #region GetMethods
-
+        #region ComandosGET
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
@@ -36,7 +30,7 @@ namespace BairroConnectAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetById")]
         public async Task<IActionResult> GetById(int id)
         {
             try
@@ -53,31 +47,10 @@ namespace BairroConnectAPI.Controllers
                 return BadRequest($"Ocorreu um erro ao buscar a categoria com id {id}: {ex.Message}");
             }
         }
-
         #endregion
 
-        #region PostMethods
-
-        [HttpPost("Add")]
-        public async Task<IActionResult> Add([FromBody] Categoria newCategoria)
-        {
-            try
-            {
-                _context.TB_CATEGORIA.Add(newCategoria);
-                await _context.SaveChangesAsync();
-                return CreatedAtAction(nameof(GetById), new { id = newCategoria.idCategoria }, newCategoria);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Ocorreu um erro ao adicionar a categoria: {ex.Message}");
-            }
-        }
-
-        #endregion
-
-        #region PutMethod
-
-        [HttpPut("{id}")]
+        #region ComandosPUT
+        [HttpPut("Update")]
         public async Task<IActionResult> Update(int id, [FromBody] Categoria updatedCategoria)
         {
             try
@@ -97,12 +70,11 @@ namespace BairroConnectAPI.Controllers
                 return StatusCode(500, $"Ocorreu um erro ao atualizar a categoria: {ex.Message}");
             }
         }
-
         #endregion
 
-        #region DeleteMethod
+        #region ComandosDELETE
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(int id)
         {
             try
