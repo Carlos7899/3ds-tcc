@@ -187,7 +187,7 @@ namespace BairroConnectAPI.Data
                    new Categoria() { idCategoria = 3, nomeCategoria = "Cultaral", descricao = "Exploração da arte, história e tradições." },
                    new Categoria() { idCategoria = 4, nomeCategoria = "Corporativo", descricao = "Eventos voltados para negócios." },
                    new Categoria() { idCategoria = 5, nomeCategoria = "Religioso", descricao = "Práticas e celebrações voltadas para a religião." },
-                   new Categoria() { idCategoria = 7, nomeCategoria = "Educacional", descricao = "Eventos voltados para educação" },
+                   new Categoria() { idCategoria = 7, nomeCategoria = "Educacional", descricao = "Eventos voltados para educação." },
                    new Categoria() { idCategoria = 8, nomeCategoria = "Institucional", descricao = "Eventos relacionados a organizações e instituições." }
 
             );
